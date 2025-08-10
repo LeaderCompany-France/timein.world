@@ -1,698 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-141Z0NGT8L"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-141Z0NGT8L');
-</script>
-	
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <base href="/">
+    <title>TimeIn.World - Current Time in 240+ Cities Worldwide</title>
+    <meta name="description" content="Check current time in 240+ cities worldwide. Real-time world clock with time zones, time converter, meeting planner. Available in 12 languages.">
     
-    <!-- SEO Meta Tags Enhanced for 2025 -->
-    <title>World Clock - Current Time in 240+ Cities | TimeIn.World</title>
-    <meta name="description" content="Check current time in 240+ cities worldwide. Real-time world clock with time zones, time converter, meeting planner. Available in 12 languages. Perfect for international business, travel planning, and remote teams.">
-    <meta name="keywords" content="world clock, time zones, current time, international time, meeting planner, time converter, what time is it, hora mundial, heure mondiale, weltzeit, international business hours">
-    <meta name="author" content="TimeIn.World">
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <!-- Script intelligent qui détecte l'environnement -->
+    <script>
+        // Détection automatique de l'environnement
+        const isGitHubPages = window.location.hostname.includes('github.io');
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        
+        // Définit le chemin de base selon l'environnement
+        let basePath = '';
+        if (isGitHubPages) {
+            // Sur GitHub Pages : pas de slash
+            basePath = '';
+        } else if (isLocalhost) {
+            // En développement local : avec slash
+            basePath = '/';
+        } else {
+            // Sur timein.world (production) : avec slash
+            basePath = '/';
+        }
+        
+        // Fonction helper pour créer les chemins
+        function getPath(path) {
+            if (basePath === '') {
+                return path;
+            }
+            return basePath + path;
+        }
+        
+        // Info de debug (visible dans la console)
+        console.log('🤖 TimeIn.World - Environnement détecté:', {
+            hostname: window.location.hostname,
+            isGitHubPages: isGitHubPages,
+            isLocalhost: isLocalhost,
+            basePath: basePath || 'racine'
+        });
+    </script>
     
-    <!-- Open Graph / Facebook Enhanced -->
+    <!-- CSS avec chemins dynamiques -->
+    <script>
+        document.write('<link rel="stylesheet" href="' + getPath('css/main.css') + '">');
+        document.write('<link rel="stylesheet" href="' + getPath('css/themes.css') + '">');
+    </script>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="TimeIn.World - World Clock">
+    <meta property="og:description" content="Check current time in 240+ cities worldwide">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://timein.world/">
-    <meta property="og:site_name" content="TimeIn.World">
-    <meta property="og:title" content="World Clock - Current Time in 240+ Cities | TimeIn.World">
-    <meta property="og:description" content="Check current time in 240+ cities worldwide. Real-time world clock with time zones, time converter, and meeting planner. Available in 12 languages.">
-    <meta property="og:image" content="https://timein.world/images/og-image.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:locale" content="en_US">
-    <meta property="og:locale:alternate" content="fr_FR">
-    <meta property="og:locale:alternate" content="es_ES">
-    <meta property="og:locale:alternate" content="de_DE">
+    <meta property="og:url" content="https://timein.world">
+    <meta property="og:image" content="https://timein.world/images/og-image.jpg">
     
-    <!-- Twitter Enhanced -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://timein.world/">
-    <meta property="twitter:title" content="World Clock - Current Time in 240+ Cities">
-    <meta property="twitter:description" content="Real-time world clock with time zones. Perfect for international meetings and travel planning.">
-    <meta property="twitter:image" content="https://timein.world/images/og-image.png">
-    <meta property="twitter:site" content="@timeinworld">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TimeIn.World - World Clock">
+    <meta name="twitter:description" content="Check current time in 240+ cities worldwide">
     
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://timein.world/">
-    
-    <!-- Alternate Languages -->
-    <link rel="alternate" hreflang="en" href="https://timein.world/en/">
-    <link rel="alternate" hreflang="fr" href="https://timein.world/fr/">
-    <link rel="alternate" hreflang="es" href="https://timein.world/es/">
-    <link rel="alternate" hreflang="de" href="https://timein.world/de/">
-    <link rel="alternate" hreflang="pt" href="https://timein.world/pt/">
-    <link rel="alternate" hreflang="it" href="https://timein.world/it/">
-    <link rel="alternate" hreflang="ru" href="https://timein.world/ru/">
-    <link rel="alternate" hreflang="zh" href="https://timein.world/zh/">
-    <link rel="alternate" hreflang="ja" href="https://timein.world/ja/">
-    <link rel="alternate" hreflang="ko" href="https://timein.world/ko/">
-    <link rel="alternate" hreflang="ar" href="https://timein.world/ar/">
-    <link rel="alternate" hreflang="hi" href="https://timein.world/hi/">
-    <link rel="alternate" hreflang="x-default" href="https://timein.world/">
-    
-    <!-- PWA Enhanced -->
-    <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#2563eb">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="TimeIn.World">
-    <meta name="application-name" content="TimeIn.World">
-    <meta name="msapplication-TileColor" content="#2563eb">
-    <meta name="msapplication-tooltip" content="World Clock - TimeIn.World">
-    
-    <!-- Icons -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    
-    <!-- Preconnect and DNS Prefetch -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://www.googletagmanager.com">
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-    
-    <!-- Preload Critical Resources -->
-    <link rel="preload" href="/css/main.css" as="style">
-    <link rel="preload" href="/js/cities-data.js" as="script">
-    <link rel="preload" href="/js/app.js" as="script">
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="/css/main.css">
-    
-    <!-- Enhanced Schema.org Structured Data for AI & SEO 2025 -->
+    <!-- Schema.org pour SEO -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@graph": [
-            {
-                "@type": "WebApplication",
-                "@id": "https://timein.world/#webapp",
-                "name": "TimeIn.World - World Clock",
-                "alternateName": "Time In World",
-                "description": "Real-time world clock showing current time in 240+ cities worldwide with time zone converter and meeting planner",
-                "url": "https://timein.world",
-                "applicationCategory": "UtilityApplication",
-                "applicationSubCategory": "TimeManagementApplication",
-                "operatingSystem": "All",
-                "browserRequirements": "Requires JavaScript. Requires HTML5.",
-                "availableLanguage": [
-                    {"@type": "Language", "name": "English", "alternateName": "en"},
-                    {"@type": "Language", "name": "French", "alternateName": "fr"},
-                    {"@type": "Language", "name": "Spanish", "alternateName": "es"},
-                    {"@type": "Language", "name": "German", "alternateName": "de"},
-                    {"@type": "Language", "name": "Portuguese", "alternateName": "pt"},
-                    {"@type": "Language", "name": "Italian", "alternateName": "it"},
-                    {"@type": "Language", "name": "Russian", "alternateName": "ru"},
-                    {"@type": "Language", "name": "Chinese", "alternateName": "zh"},
-                    {"@type": "Language", "name": "Japanese", "alternateName": "ja"},
-                    {"@type": "Language", "name": "Korean", "alternateName": "ko"},
-                    {"@type": "Language", "name": "Arabic", "alternateName": "ar"},
-                    {"@type": "Language", "name": "Hindi", "alternateName": "hi"}
-                ],
-                "offers": {
-                    "@type": "Offer",
-                    "price": "0",
-                    "priceCurrency": "USD",
-                    "availability": "https://schema.org/InStock"
-                },
-                "aggregateRating": {
-                    "@type": "AggregateRating",
-                    "ratingValue": "4.8",
-                    "bestRating": "5",
-                    "worstRating": "1",
-                    "ratingCount": "2847",
-                    "reviewCount": "1250"
-                },
-                "featureList": [
-                    "Real-time clock for 240+ cities",
-                    "Time zone converter",
-                    "Meeting planner",
-                    "12 language support",
-                    "Dark/Light mode",
-                    "PWA support",
-                    "Offline capability"
-                ],
-                "screenshot": "https://timein.world/images/screenshot.png",
-                "softwareVersion": "2.0",
-                "datePublished": "2024-01-01",
-                "dateModified": "2025-08-09",
-                "potentialAction": [
-                    {
-                        "@type": "SearchAction",
-                        "target": {
-                            "@type": "EntryPoint",
-                            "urlTemplate": "https://timein.world/search?q={search_term_string}"
-                        },
-                        "query-input": "required name=search_term_string"
-                    },
-                    {
-                        "@type": "ViewAction",
-                        "name": "Check time in city",
-                        "target": {
-                            "@type": "EntryPoint",
-                            "urlTemplate": "https://timein.world/en/time-in-{city}",
-                            "actionPlatform": [
-                                "http://schema.org/DesktopWebPlatform",
-                                "http://schema.org/MobileWebPlatform"
-                            ]
-                        }
-                    }
-                ]
-            },
-            {
-                "@type": "FAQPage",
-                "mainEntity": [
-                    {
-                        "@type": "Question",
-                        "name": "What is the current time in New York?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "To check the current time in New York, visit our New York time page which shows live time with automatic updates every second, including EDT/EST timezone information."
-                        }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "How to calculate time difference between cities?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "Use our time converter tool to instantly calculate time differences between any two cities. Simply select your cities and the tool will show current times and time zone differences."
-                        }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "What time zones are covered by TimeIn.World?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "TimeIn.World covers all 24 time zones with 240+ major cities worldwide, from UTC-12 to UTC+14, including daylight saving time adjustments."
-                        }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "How to plan international meetings across time zones?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "Our meeting planner tool helps you find the best time for international meetings by showing overlapping business hours across multiple time zones."
-                        }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "Is TimeIn.World free to use?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "Yes, TimeIn.World is completely free to use. All features including world clock, time converter, and meeting planner are available at no cost."
-                        }
-                    },
-                    {
-                        "@type": "Question",
-                        "name": "Can I use TimeIn.World offline?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "Yes, TimeIn.World works offline after your first visit. It's a Progressive Web App (PWA) that caches essential data for offline use."
-                        }
-                    }
-                ]
-            },
-            {
-                "@type": "BreadcrumbList",
-                "itemListElement": [
-                    {
-                        "@type": "ListItem",
-                        "position": 1,
-                        "name": "Home",
-                        "item": "https://timein.world"
-                    },
-                    {
-                        "@type": "ListItem",
-                        "position": 2,
-                        "name": "World Clock",
-                        "item": "https://timein.world/world"
-                    }
-                ]
-            },
-            {
-                "@type": "WebSite",
-                "@id": "https://timein.world/#website",
-                "url": "https://timein.world",
-                "name": "TimeIn.World",
-                "description": "World Clock - Current time in 240+ cities worldwide",
-                "publisher": {
-                    "@type": "Organization",
-                    "name": "TimeIn.World",
-                    "logo": {
-                        "@type": "ImageObject",
-                        "url": "https://timein.world/images/logo.png",
-                        "width": 600,
-                        "height": 60
-                    }
-                },
-                "inLanguage": ["en", "fr", "es", "de", "pt", "it", "ru", "zh", "ja", "ko", "ar", "hi"],
-                "copyrightYear": "2024",
-                "copyrightHolder": {
-                    "@type": "Organization",
-                    "name": "TimeIn.World"
-                }
-            },
-            {
-                "@type": "Service",
-                "name": "World Clock Service",
-                "serviceType": "Time Information Service",
-                "provider": {
-                    "@type": "Organization",
-                    "name": "TimeIn.World"
-                },
-                "areaServed": {
-                    "@type": "Place",
-                    "name": "Worldwide"
-                },
-                "hasOfferCatalog": {
-                    "@type": "OfferCatalog",
-                    "name": "Time Services",
-                    "itemListElement": [
-                        {
-                            "@type": "Offer",
-                            "itemOffered": {
-                                "@type": "Service",
-                                "name": "Current Time Display",
-                                "description": "Real-time clock for any city"
-                            }
-                        },
-                        {
-                            "@type": "Offer",
-                            "itemOffered": {
-                                "@type": "Service",
-                                "name": "Time Zone Converter",
-                                "description": "Convert time between cities"
-                            }
-                        },
-                        {
-                            "@type": "Offer",
-                            "itemOffered": {
-                                "@type": "Service",
-                                "name": "Meeting Planner",
-                                "description": "Find best meeting times across zones"
-                            }
-                        }
-                    ]
-                }
-            },
-            {
-                "@type": "SpeakableSpecification",
-                "cssSelector": [".city-time", "h1", ".time-display"],
-                "xpath": ["/html/head/title"]
-            }
-        ]
+        "@type": "WebApplication",
+        "name": "TimeIn.World",
+        "description": "World clock showing current time in 240+ cities with time converter and meeting planner",
+        "url": "https://timein.world",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "1024"
+        }
     }
     </script>
-    
-    <!-- Additional Metadata for AI Crawlers -->
-    <meta name="ai-content-type" content="utility-tool">
-    <meta name="ai-content-category" content="time-zones, world-clock">
-    <meta name="ai-content-freshness" content="real-time">
-    <meta name="ai-supported-queries" content="current time, time zones, time conversion, meeting planning">
 </head>
 <body>
-    <!-- Skip to content for accessibility -->
-    <a href="#main" class="skip-link">Skip to content</a>
-    
-    <!-- Header with Enhanced Navigation -->
-    <header class="header" role="banner">
-        <nav class="nav container" role="navigation" aria-label="Main navigation">
-            <a href="/" class="logo" data-link aria-label="TimeIn.World Home">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <polyline points="12 6 12 12 16 14"></polyline>
-                </svg>
-                <span>TimeIn.World</span>
-            </a>
-            
-            <div class="nav-right">
-                <!-- Language Buttons Bar -->
-                <div class="language-bar" role="group" aria-label="Language selection">
-                    <button class="lang-btn" data-lang="en" aria-label="English" title="English">EN</button>
-                    <button class="lang-btn" data-lang="fr" aria-label="Français" title="Français">FR</button>
-                    <button class="lang-btn" data-lang="es" aria-label="Español" title="Español">ES</button>
-                    <button class="lang-btn" data-lang="de" aria-label="Deutsch" title="Deutsch">DE</button>
-                    <button class="lang-btn" data-lang="pt" aria-label="Português" title="Português">PT</button>
-                    <button class="lang-btn" data-lang="it" aria-label="Italiano" title="Italiano">IT</button>
-                    <button class="lang-btn" data-lang="ru" aria-label="Русский" title="Русский">RU</button>
-                    <button class="lang-btn" data-lang="zh" aria-label="中文" title="中文">中文</button>
-                    <button class="lang-btn" data-lang="ja" aria-label="日本語" title="日本語">日</button>
-                    <button class="lang-btn" data-lang="ko" aria-label="한국어" title="한국어">한</button>
-                    <button class="lang-btn" data-lang="ar" aria-label="العربية" title="العربية">AR</button>
-                    <button class="lang-btn" data-lang="hi" aria-label="हिन्दी" title="हिन्दी">हि</button>
-                </div>
-                
-                <!-- Theme Toggle -->
-                <button class="theme-toggle" aria-label="Toggle dark mode" role="switch" aria-checked="false">
-                    <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" aria-hidden="true">
-                        <circle cx="10" cy="10" r="5"></circle>
-                        <line x1="10" y1="1" x2="10" y2="3"></line>
-                        <line x1="10" y1="17" x2="10" y2="19"></line>
-                        <line x1="19" y1="10" x2="17" y2="10"></line>
-                        <line x1="3" y1="10" x2="1" y2="10"></line>
-                        <line x1="16.36" y1="3.64" x2="14.95" y2="5.05"></line>
-                        <line x1="5.05" y1="14.95" x2="3.64" y2="16.36"></line>
-                        <line x1="16.36" y1="16.36" x2="14.95" y2="14.95"></line>
-                        <line x1="5.05" y1="5.05" x2="3.64" y2="3.64"></line>
-                    </svg>
-                    <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" aria-hidden="true">
-                        <path d="M17 10.39A7 7 0 1 1 9.61 3 5 5 0 0 0 17 10.39z"></path>
-                    </svg>
-                </button>
-            </div>
-        </nav>
-    </header>
-    
-    <!-- Main Content -->
-    <main id="main" class="main" role="main">
-        <div id="app" class="container">
-            <!-- Dynamic content will be loaded here -->
-            <div style="text-align: center; padding: 3rem;">
-                <div class="loader-spinner" style="margin: 0 auto;" aria-label="Loading"></div>
-                <p style="margin-top: 1rem; color: var(--text-secondary);">Loading TimeIn.World...</p>
-                <noscript>
-                    <p style="margin-top: 2rem; color: #ef4444;">
-                        JavaScript is required to use TimeIn.World. Please enable JavaScript in your browser settings.
-                    </p>
-                </noscript>
-            </div>
+    <!-- Message de chargement avec détection d'environnement -->
+    <div id="app">
+        <div class="loading">
+            <h2>Loading TimeIn.World...</h2>
+            <div class="spinner"></div>
+            <noscript>
+                <p style="color: red;">⚠️ JavaScript is required for this application to work.</p>
+            </noscript>
         </div>
+    </div>
+
+    <!-- Scripts avec chemins dynamiques -->
+    <script>
+        // Chargement intelligent des scripts
+        const scripts = [
+            'js/cities-data.js',
+            'js/translations.js',
+            'js/app.js',
+            'js/router.js',
+            'js/city-content-generator.js'
+        ];
         
-        <!-- SEO Content for Crawlers (Hidden visually but available for SEO) -->
-        <div class="seo-content" style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;">
-            <h1>World Clock - Current Time Worldwide</h1>
-            <p>TimeIn.World is a free world clock showing current local time in 240+ cities across all time zones. Perfect for international business, travel planning, remote teams, and anyone needing to know what time it is anywhere in the world.</p>
-            <h2>Popular Time Zones</h2>
-            <ul>
-                <li>Eastern Time (ET) - New York, Toronto, Miami</li>
-                <li>Central Time (CT) - Chicago, Houston, Mexico City</li>
-                <li>Pacific Time (PT) - Los Angeles, San Francisco, Seattle</li>
-                <li>Greenwich Mean Time (GMT) - London, Dublin, Lisbon</li>
-                <li>Central European Time (CET) - Paris, Berlin, Rome</li>
-                <li>Japan Standard Time (JST) - Tokyo, Osaka, Kyoto</li>
-                <li>China Standard Time (CST) - Beijing, Shanghai, Hong Kong</li>
-                <li>Australian Eastern Time (AET) - Sydney, Melbourne, Brisbane</li>
-            </ul>
-            <h2>Features</h2>
-            <p>Time zone converter, meeting planner, daylight saving time updates, 12 languages support, dark mode, offline capability.</p>
-        </div>
-    </main>
-    
-    <!-- Enhanced Footer -->
-    <footer class="footer" role="contentinfo">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3 data-i18n="tools">Tools</h3>
-                    <nav aria-label="Tools navigation">
-                        <a href="/time-converter" data-link data-i18n="timeConverter">Time Converter</a>
-                        <a href="/meeting-planner" data-link data-i18n="meetingPlanner">Meeting Planner</a>
-                        <a href="/world" data-link data-i18n="allCities">All Cities</a>
-                        <a href="/time-zone-map" data-link>Time Zone Map</a>
-                        <a href="/dst-dates" data-link>DST Dates</a>
-                        <a href="/api" data-link data-i18n="api">API Documentation</a>
-                    </nav>
-                </div>
-                <div class="footer-section">
-                    <h3 data-i18n="popular">Popular Cities</h3>
-                    <nav aria-label="Popular cities navigation">
-                        <a href="/en/time-in-new-york" data-link>New York</a>
-                        <a href="/en/time-in-london" data-link>London</a>
-                        <a href="/en/time-in-tokyo" data-link>Tokyo</a>
-                        <a href="/en/time-in-paris" data-link>Paris</a>
-                        <a href="/en/time-in-dubai" data-link>Dubai</a>
-                        <a href="/en/time-in-singapore" data-link>Singapore</a>
-                        <a href="/en/time-in-sydney" data-link>Sydney</a>
-                        <a href="/en/time-in-hong-kong" data-link>Hong Kong</a>
-                    </nav>
-                </div>
-                <div class="footer-section">
-                    <h3>Resources</h3>
-                    <nav aria-label="Resources navigation">
-                        <a href="/about" data-link>About Us</a>
-                        <a href="/privacy" data-link>Privacy Policy</a>
-                        <a href="/terms" data-link>Terms of Service</a>
-                        <a href="/contact" data-link>Contact</a>
-                        <a href="/sitemap.xml">Sitemap</a>
-                    </nav>
-                </div>
-                <div class="footer-section">
-                    <p>&copy; 2024 TimeIn.World. <span data-i18n="rightsReserved">All rights reserved.</span></p>
-                    <p class="footer-tagline">
-                        <small>Accurate time zones for 240+ cities worldwide</small>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </footer>
-    
-    <!-- Scripts Section - Optimized loading order -->
-    
-    <!-- 1. Core Data -->
-    <script data-cfasync="false" src="/js/cities-data.js"></script>
-    <script data-cfasync="false" src="/js/capitals-data.js"></script>
-    
-    <!-- Create aliases for compatibility -->
-    <script data-cfasync="false">
-        // Create cityDatabase alias if citiesData exists
-        if (typeof citiesData !== 'undefined' && typeof cityDatabase === 'undefined') {
-            window.cityDatabase = citiesData;
-            console.log('Created cityDatabase alias from citiesData');
+        // Fonction pour charger un script
+        function loadScript(src, callback) {
+            const script = document.createElement('script');
+            script.src = getPath(src);
+            script.onload = callback;
+            script.onerror = function() {
+                console.error('❌ Erreur de chargement:', src);
+                // Tentative avec l'autre format de chemin
+                script.src = src; // Essai sans le basePath
+            };
+            document.body.appendChild(script);
         }
-        // Also check for capitalsData
-        if (typeof capitalsData !== 'undefined' && typeof capitalsDatabase === 'undefined') {
-            window.capitalsDatabase = capitalsData;
-        }
-    </script>
-    
-    <!-- 2. Configuration -->
-    <script data-cfasync="false">
-        // Define city URL slugs - needed by multiple modules
-        window.cityUrlSlugs = {
-            en: 'time-in',
-            fr: 'heure-a',
-            es: 'hora-en',
-            de: 'zeit-in',
-            pt: 'hora-em',
-            it: 'ora-a',
-            ru: 'vremya-v',
-            zh: 'shijian',
-            ja: 'jikan',
-            ko: 'sigan',
-            ar: 'alwaqt-fi',
-            hi: 'samay'
-        };
-    </script>
-    
-    <!-- 3. Load all translation files -->
-    <script data-cfasync="false" src="/js/translations/en.js"></script>
-    <script data-cfasync="false" src="/js/translations/fr.js"></script>
-    <script data-cfasync="false" src="/js/translations/es.js"></script>
-    <script data-cfasync="false" src="/js/translations/de.js"></script>
-    <script data-cfasync="false" src="/js/translations/pt.js"></script>
-    <script data-cfasync="false" src="/js/translations/it.js"></script>
-    <script data-cfasync="false" src="/js/translations/ru.js"></script>
-    <script data-cfasync="false" src="/js/translations/zh.js"></script>
-    <script data-cfasync="false" src="/js/translations/ja.js"></script>
-    <script data-cfasync="false" src="/js/translations/ko.js"></script>
-    <script data-cfasync="false" src="/js/translations/ar.js"></script>
-    <script data-cfasync="false" src="/js/translations/hi.js"></script>
-    
-    <!-- 4. Translations compatibility layer -->
-    <script data-cfasync="false" src="/js/translations-compat.js"></script>
-    
-    <!-- 5. Application modules -->
-    <script data-cfasync="false" src="/js/app.js"></script>
-    <script data-cfasync="false" src="/js/seo-manager.js"></script>
-    
-    <!-- 6. Application initialization -->
-    <script data-cfasync="false">
-        // Initialize the application
-        (function() {
-            'use strict';
-            
-            // Prevent multiple initializations
-            if (window.appInitialized) {
-                console.log('App already initialized');
-                return;
-            }
-            window.appInitialized = true;
-            
-            // Wait for DOM to be ready
-            function initApp() {
-                console.log('Initializing TimeIn.World...');
-                
-                // Verify dependencies
-                const dependencies = {
-                    cityDatabase: typeof window.cityDatabase !== 'undefined',
-                    translations: typeof window.translations !== 'undefined',
-                    cityUrlSlugs: typeof window.cityUrlSlugs !== 'undefined'
-                };
-                
-                console.log('Dependencies check:', dependencies);
-                
-                // Check all dependencies
-                for (const [dep, loaded] of Object.entries(dependencies)) {
-                    if (!loaded) {
-                        console.error(`Missing dependency: ${dep}`);
-                        return;
-                    }
-                }
-                
-                // Initialize theme
-                const savedTheme = localStorage.getItem('theme') || 'light';
-                document.documentElement.setAttribute('data-theme', savedTheme);
-                
-                // Update aria-checked for theme toggle
-                const themeToggle = document.querySelector('.theme-toggle');
-                if (themeToggle) {
-                    themeToggle.setAttribute('aria-checked', savedTheme === 'dark' ? 'true' : 'false');
-                }
-                
-                // Initialize language
-                if (window.initializeLanguage) {
-                    window.initializeLanguage();
-                }
-                
-                // Setup event listeners
-                if (window.setupEventListeners) {
-                    window.setupEventListeners();
-                }
-                
-                // Load router (only if not already loaded)
-                if (!window.Router) {
-                    const routerScript = document.createElement('script');
-                    routerScript.src = '/js/router.js';
-                    routerScript.setAttribute('data-cfasync', 'false');
-                    
-                    routerScript.onload = function() {
-                        console.log('Router loaded successfully');
-                    };
-                    
-                    routerScript.onerror = function() {
-                        console.error('Failed to load router');
-                        document.getElementById('app').innerHTML = 
-                            '<div style="text-align: center; padding: 2rem;">' +
-                            '<h2>Error loading application</h2>' +
-                            '<p>Please refresh the page</p>' +
-                            '</div>';
-                    };
-                    
-                    document.body.appendChild(routerScript);
-                }
-                
-                // Register service worker
-                if ('serviceWorker' in navigator && !window.swRegistered) {
-                    window.swRegistered = true;
-                    navigator.serviceWorker.register('/js/service-worker.js')
-                        .then(reg => console.log('Service Worker registered'))
-                        .catch(err => console.warn('Service Worker registration failed:', err));
-                }
-                
-                // Performance monitoring
-                if ('performance' in window && 'PerformanceObserver' in window) {
-                    try {
-                        // Monitor Largest Contentful Paint
-                        const lcpObserver = new PerformanceObserver((list) => {
-                            const entries = list.getEntries();
-                            const lastEntry = entries[entries.length - 1];
-                            console.log('LCP:', lastEntry.renderTime || lastEntry.loadTime);
-                            
-                            // Send to analytics if needed
-                            if (typeof gtag !== 'undefined') {
-                                gtag('event', 'timing_complete', {
-                                    'name': 'LCP',
-                                    'value': Math.round(lastEntry.renderTime || lastEntry.loadTime)
-                                });
-                            }
-                        });
-                        lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true });
-                        
-                        // Monitor First Input Delay
-                        const fidObserver = new PerformanceObserver((list) => {
-                            const entries = list.getEntries();
-                            entries.forEach((entry) => {
-                                console.log('FID:', entry.processingStart - entry.startTime);
-                            });
-                        });
-                        fidObserver.observe({ type: 'first-input', buffered: true });
-                    } catch (e) {
-                        console.log('Performance monitoring not available');
-                    }
-                }
-            }
-            
-            // Initialize when DOM is ready
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', initApp);
+        
+        // Chargement séquentiel des scripts
+        let scriptIndex = 0;
+        function loadNextScript() {
+            if (scriptIndex < scripts.length) {
+                loadScript(scripts[scriptIndex], function() {
+                    console.log('✅ Chargé:', scripts[scriptIndex]);
+                    scriptIndex++;
+                    loadNextScript();
+                });
             } else {
-                initApp();
+                // Tous les scripts sont chargés, initialiser l'app
+                console.log('🚀 Initialisation de TimeIn.World...');
+                if (typeof initRouter !== 'undefined') {
+                    initRouter();
+                } else {
+                    console.error('❌ initRouter non trouvé');
+                }
             }
-        })();
+        }
+        
+        // Démarrer le chargement
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('📱 DOM chargé, démarrage du chargement des scripts...');
+            loadNextScript();
+        });
+        
+        // Gestion d'erreur globale (pour debug)
+        window.addEventListener('error', function(e) {
+            console.error('❌ Erreur globale:', e.message, e.filename, e.lineno);
+        });
     </script>
     
-    <!-- Inline CSS for critical rendering path -->
-    <style>
-        /* Critical CSS for above-the-fold content */
-        .loader-spinner {
-            width: 50px;
-            height: 50px;
-            border: 3px solid #e2e8f0;
-            border-top-color: #2563eb;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
+    <!-- Fallback pour les navigateurs très anciens -->
+    <script>
+        // Test de compatibilité
+        if (!window.localStorage || !window.JSON) {
+            document.getElementById('app').innerHTML = 
+                '<div style="padding: 20px; text-align: center;">' +
+                '<h2>⚠️ Browser Not Supported</h2>' +
+                '<p>Please update your browser to use TimeIn.World</p>' +
+                '</div>';
         }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+    </script>
+    
+    <!-- Analytics (si vous en avez) -->
+    <script>
+        // Placeholder pour Google Analytics ou autre
+        // Détection de l'environnement pour éviter de compter les tests
+        if (!isGitHubPages && !isLocalhost) {
+            console.log('📊 Analytics activé (production)');
+            // Votre code analytics ici
+        } else {
+            console.log('📊 Analytics désactivé (test/dev)');
         }
-        
-        /* Skip link for accessibility */
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            background: #2563eb;
-            color: white;
-            padding: 8px 16px;
-            text-decoration: none;
-            border-radius: 4px;
-            z-index: 9999;
-        }
-        
-        .skip-link:focus {
-            top: 8px;
-        }
-        
-        /* SEO content hidden but crawlable */
-        .seo-content {
-            position: absolute;
-            left: -9999px;
-            width: 1px;
-            height: 1px;
-            overflow: hidden;
-        }
-        
-        /* Ensure smooth theme transitions */
-        * {
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-    </style>
-	<script src="/js/city-content-generator.js"></script>
+    </script>
 </body>
 </html>
