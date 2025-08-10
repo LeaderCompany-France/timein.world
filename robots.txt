@@ -1,0 +1,73 @@
+# Robots.txt for TimeIn.World
+# Allow all crawlers
+
+User-agent: *
+Allow: /
+Crawl-delay: 1
+
+# Specific rules for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+# AI Crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+# Sitemap location
+Sitemap: https://timein.world/sitemap.xml
+
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# Allow access to static resources
+User-agent: *
+Allow: /css/
+Allow: /js/
+Allow: /images/
+Allow: /api/
+
+# Prevent crawling of search results
+User-agent: *
+Disallow: /search?
+
+# Rate limiting for API
+User-agent: *
+Disallow: /api/v1/internal/
+
+# Host directive (for Yandex)
+Host: https://timein.world

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fix Language Selector</title>
+    <base href="/">
+    <link rel="stylesheet" href="/css/main.css">
+    <style>
+        .debug-panel {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #000;
+            color: #0f0;
+            padding: 20px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .test-button {
+            background: #2563eb;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Same header as main site -->
+    <header class="header">
+        <nav class="nav container">
+            <a href="/" class="logo" data-link>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                <span>TimeIn.World</span>
+            </a>
+            
+            <div class="nav-right">
+                <div class="language-selector">
+                    <button class="language-button" aria-label="Select language" aria-expanded="false">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+                            <circle cx="10" cy="10" r="9"></circle>
+                            <path d="M2 10h16"></path>
+                            <path d="M10 2a15.3 15.3 0 0 1 4 6 15.3 15.3 0 0 1-4 6 15.3 15.3 0 0 1-4-6 15.3 15.3 0 0 1 4-6z"></path>
+                        </svg>
+                        <span id="current-lang">EN</span>
+                    </button>
+                    <div class="language-dropdown" aria-hidden="true">
+                        <button data-lang="en" class="lang-option">English</button>
+                        <button data-lang="fr" class="lang-option">Français</button>
+                        <button data-lang="es" class="lang-option">Español</button>
+                        <button data-lang="de" class="lang-option">Deutsch</button>
+                        <button data-lang="pt" class="lang-option">Português</button>
+                        <button data-lang="it" class="lang-option">Italiano</button>
+                        <button data-lang="ru" class="lang-option">Русский</button>
+                        <button data-lang="zh" class="lang-option">中文</button>
+                        <button data-lang="ja" class="lang-option">日本語</button>
+                        <button data-lang="ko" class="lang-option">한국어</button>
+                        <button data-lang="ar" class="lang-option">العربية</button>
+                        <button data-lang="hi" class="lang-option">हिन्दी</button>
+                    </div>
+                </div>
+                
+                <button class="theme-toggle" aria-label="Toggle dark mode">
+                    <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+                        <circle cx="10" cy="10" r="5"></circle>
+                    </svg>
+                    <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+                        <path d="M17 10.39A7 7 0 1 1 9.61 3 5 5 0 0 0 17 10.39z"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+    
+    <main style="padding: 50px;">
+        <h1>Language Selector Debug</h1>
+        <div>
+            <button class="test-button" onclick="testDropdown()">Test Dropdown Toggle</button>
+            <button class="test-button" onclick="attachListeners()">Attach Listeners</button>
+            <button class="test-button" onclick="showDropdownState()">Show Dropdown State</button>
+            <button class="test-button" onclick="forceOpenDropdown()">Force Open Dropdown</button>
+        </div>
+    </main>
+    
+    <div class="debug-panel" id="debug"></div>
+    
+    <!-- Hidden app div -->
+    <div id="app" style="display: none;"></div>
+    
+    <!-- Load minimal scripts -->
+    <script src="/js/translations.js"></script>
+    
+    <script>
+        const debug = document.getElementById('debug');
+        let logs = [];
+        
+        function log(msg, type = 'info') {
+            const time = new Date().toLocaleTimeString();
+            const color = type === 'error' ? '#f00' : type === 'success' ? '#0f0' : '#ff0';
+            logs.push(`<span style="color: ${color}">[${time}] ${msg}</span>`);
+            debug.innerHTML = logs.join('<br>');
+            console.log(msg);
+        }
+        
+        // Basic state
+        const state = {
+            currentLang: localStorage.getItem('language') || 'en'
+        };
+        
+        function changeLanguage(lang) {
+            log(`Changing language to: ${lang}`, 'info');
+            state.currentLang = lang;
+            localStorage.setItem('language', lang);
+            document.getElementById('current-lang').textContent = lang.toUpperCase();
+            log(`Language changed to: ${lang}`, 'success');
+        }
+        
+        function testDropdown() {
+            log('Testing dropdown toggle...', 'info');
+            const button = document.querySelector('.language-button');
+            const dropdown = document.querySelector('.language-dropdown');
+            
+            if (!button || !dropdown) {
+                log('Elements not found!', 'error');
+                return;
+            }
+            
+            const currentState = dropdown.getAttribute('aria-hidden');
+            log(`Current aria-hidden: ${currentState}`, 'info');
+            
+            // Try clicking
+            button.click();
+            
+            const newState = dropdown.getAttribute('aria-hidden');
+            log(`New aria-hidden: ${newState}`, 'info');
+            
+            if (currentState === newState) {
+                log('State did not change - click event may not be working', 'error');
+            } else {
+                log('Dropdown toggled successfully', 'success');
+            }
+        }
+        
+        function showDropdownState() {
+            const dropdown = document.querySelector('.language-dropdown');
+            const button = document.querySelector('.language-button');
+            
+            log('=== Dropdown State ===', 'info');
+            log(`aria-hidden: ${dropdown.getAttribute('aria-hidden')}`, 'info');
+            log(`aria-expanded: ${button.getAttribute('aria-expanded')}`, 'info');
+            
+            // Check computed styles
+            const styles = window.getComputedStyle(dropdown);
+            log(`display: ${styles.display}`, 'info');
+            log(`opacity: ${styles.opacity}`, 'info');
+            log(`pointer-events: ${styles.pointerEvents}`, 'info');
+            log(`position: ${styles.position}`, 'info');
+            log(`z-index: ${styles.zIndex}`, 'info');
+        }
+        
+        function forceOpenDropdown() {
+            log('Force opening dropdown...', 'info');
+            const dropdown = document.querySelector('.language-dropdown');
+            const button = document.querySelector('.language-button');
+            
+            dropdown.setAttribute('aria-hidden', 'false');
+            button.setAttribute('aria-expanded', 'true');
+            
+            // Also try with styles
+            dropdown.style.opacity = '1';
+            dropdown.style.pointerEvents = 'auto';
+            dropdown.style.display = 'block';
+            
+            log('Dropdown forced open', 'success');
+        }
+        
+        function attachListeners() {
+            log('Attaching listeners...', 'info');
+            
+            const button = document.querySelector('.language-button');
+            const dropdown = document.querySelector('.language-dropdown');
+            
+            if (!button || !dropdown) {
+                log('Elements not found!', 'error');
+                return;
+            }
+            
+            // Remove ALL event listeners by cloning the entire nav-right div
+            const navRight = document.querySelector('.nav-right');
+            const newNavRight = navRight.cloneNode(true);
+            navRight.parentNode.replaceChild(newNavRight, navRight);
+            
+            // Get fresh references
+            const langButton = document.querySelector('.language-button');
+            const langDropdown = document.querySelector('.language-dropdown');
+            
+            // Single click handler for button
+            langButton.onclick = function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                log('Button clicked via onclick!', 'success');
+                
+                const currentHidden = langDropdown.getAttribute('aria-hidden');
+                const isCurrentlyOpen = currentHidden === 'false';
+                const newHiddenState = isCurrentlyOpen ? 'true' : 'false';
+                
+                log(`Current state: aria-hidden="${currentHidden}" (${isCurrentlyOpen ? 'OPEN' : 'CLOSED'})`, 'info');
+                log(`Setting to: aria-hidden="${newHiddenState}" (${!isCurrentlyOpen ? 'OPEN' : 'CLOSED'})`, 'info');
+                
+                langDropdown.setAttribute('aria-hidden', newHiddenState);
+                langButton.setAttribute('aria-expanded', !isCurrentlyOpen);
+                
+                // Force style update
+                if (!isCurrentlyOpen) {
+                    langDropdown.style.display = 'block';
+                    langDropdown.style.opacity = '1';
+                    langDropdown.style.pointerEvents = 'auto';
+                } else {
+                    langDropdown.style.display = 'none';
+                    langDropdown.style.opacity = '0';
+                    langDropdown.style.pointerEvents = 'none';
+                }
+                
+                // Verify the change
+                setTimeout(() => {
+                    const finalState = langDropdown.getAttribute('aria-hidden');
+                    log(`Final state: aria-hidden="${finalState}"`, finalState === newHiddenState ? 'success' : 'error');
+                }, 10);
+            };
+            
+            // Language options with onclick
+            document.querySelectorAll('.lang-option').forEach((option) => {
+                option.onclick = function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const lang = this.getAttribute('data-lang');
+                    log(`Language selected: ${lang}`, 'success');
+                    changeLanguage(lang);
+                    
+                    // Close dropdown
+                    langDropdown.setAttribute('aria-hidden', 'true');
+                    langButton.setAttribute('aria-expanded', 'false');
+                    langDropdown.style.display = 'none';
+                };
+            });
+            
+            // Document click to close
+            document.onclick = function(e) {
+                if (!langButton.contains(e.target) && !langDropdown.contains(e.target)) {
+                    if (langDropdown.getAttribute('aria-hidden') === 'false') {
+                        log('Closing dropdown (outside click)', 'info');
+                        langDropdown.setAttribute('aria-hidden', 'true');
+                        langButton.setAttribute('aria-expanded', 'false');
+                        langDropdown.style.display = 'none';
+                    }
+                }
+            };
+            
+            log('All listeners attached with onclick handlers', 'success');
+        }
+        
+        // Initial log
+        log('Page loaded, ready for testing', 'success');
+        
+        // Try attaching listeners automatically
+        setTimeout(() => {
+            log('Auto-attaching listeners...', 'info');
+            attachListeners();
+        }, 500);
+    </script>
+</body>
+</html>

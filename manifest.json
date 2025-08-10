@@ -1,0 +1,35 @@
+{
+  "name": "TimeIn.World - World Clock",
+  "short_name": "TimeIn.World",
+  "description": "World clock showing current time in 240+ cities worldwide with time converter and meeting planner",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "orientation": "portrait-primary",
+  "categories": ["utilities", "productivity"],
+  "lang": "en",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Ccircle cx='256' cy='256' r='200' fill='%232563eb'/%3E%3Cpath d='M256 106v150l100 50' stroke='white' stroke-width='20' fill='none'/%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Time Converter",
+      "short_name": "Convert",
+      "url": "/time-converter"
+    },
+    {
+      "name": "Meeting Planner",
+      "short_name": "Plan",
+      "url": "/meeting-planner"
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}
